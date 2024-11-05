@@ -1,0 +1,102 @@
+<view class="container">
+  <!-- 顶部标题和图标 -->
+  <view class="header">
+    <image class="app-icon" src="/images/app-icon.png" />
+    <text class="app-title">词卡翻翻乐（幼儿版）</text>
+  </view>
+
+  <!-- 聊天内容区域 -->
+  <scroll-view 
+    scroll-y 
+    class="chat-container"
+    scroll-into-view="{{scrollToView}}"
+    scroll-with-animation>
+    
+    <!-- 欢迎消息卡片 -->
+    <view class="welcome-card">
+      <text class="welcome-text">亲爱的小朋友们，大家好呀！我是你的单词小助手 阿尔法。学习单词就像开启一场超级有趣的冒险之旅哦。</text>
+      <text class="welcome-text">今天，我要带着你们一起去探索奇妙的单词世界。</text>
+      <text class="welcome-hint">请输入你想学习的主题场景，比如：动物园，植物园或者海洋馆</text>
+    </view>
+
+    <!-- 聊天记录 -->
+    <view class="chat-list">
+      <view class="chat-item {{item.type}}" 
+            wx:for="{{chatList}}" 
+            wx:key="index" 
+            id="chat-{{index}}">
+        
+        <!-- 用户消息 -->
+        <view class="chat-item user" wx:if="{{item.type === 'user'}}">
+          <view class="message-wrapper">
+            <view class="nickname">第瓢个季节</view>
+            <view class="message-content">{{item.content}}</view>
+          </view>
+          <view class="avatar">
+            <image src="/images/user-avatar.jpg" mode="aspectFit"/>
+          </view>
+        </view>
+        
+        <!-- AI响应 -->
+        <view class="chat-item ai" wx:if="{{item.type === 'ai'}}">
+          <view class="avatar">
+            <image src="/images/app-icon.png" mode="aspectFit"/>
+          </view>
+          <view class="message-wrapper">
+            <view class="nickname">词卡翻翻乐（幼儿版）</view>
+            <view class="card-container">
+              <image class="word-image" src="{{item.imageUrl}}" mode="aspectFit"/>
+              <view class="audio-bar">
+                <view class="play-button" bindtap="playAudio" data-url="{{item.audioUrl}}">
+                  <image class="play-icon" src="/images/play-icon.svg"/>
+                </view>
+                <view class="progress-bar">
+                  <view class="progress-inner"></view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+
+  <!-- 主题选择按钮 -->
+  <view class="theme-buttons">
+    <button class="theme-btn" bindtap="selectTheme" data-theme="animal">
+      <text class="theme-icon">🦁</text>
+      <text>动物园主题</text>
+    </button>
+    <button class="theme-btn" bindtap="selectTheme" data-theme="plant">
+      <text class="theme-icon">🌳</text>
+      <text>植物园主题</text>
+    </button>
+  </view>
+
+  <!-- 底部操作区 -->
+  <view class="bottom-area">
+    <!-- 历史记录按钮 -->
+    <view class="history-buttons">
+      <button class="history-btn" bindtap="checkTodayWords">
+        <text class="history-icon">📅</text>
+        <text>今日已学</text>
+      </button>
+      <button class="history-btn" bindtap="checkYesterdayWords">
+        <text class="history-icon">📅</text>
+        <text>昨日已学</text>
+      </button>
+    </view>
+
+    <!-- 输入区域 -->
+    <view class="input-area">
+      <view class="emoji-btn">😊</view>
+      <input class="word-input" 
+             placeholder="发送消息..." 
+             value="{{inputWord}}"
+             bindinput="onInputChange"/>
+      <view class="send-btn {{inputWord ? 'active' : ''}}" bindtap="handleSend">
+        <image class="send-icon" src="/images/send-arrow.svg" />
+      </view>
+    </view>
+  </view>
+</view> 
