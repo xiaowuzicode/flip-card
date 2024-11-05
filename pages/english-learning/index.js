@@ -2,7 +2,7 @@
 const { token } = require('./config.js');
 // 配置开关和模拟数据
 const CONFIG = {
-  USE_REAL_API: true, // 控制是否使用真实API的开关
+  USE_REAL_API: false, // 控制是否使用真实API的开关
   MOCK_DELAY: 500,
   // 使用条件编译
   API_TOKEN: token
@@ -26,14 +26,14 @@ const MOCK_RESPONSES = {
     msg: "Success",
     token: 730
   },
-  '7433005944232214579': { // 主题选择的 workflow
-    code: 0,
-    cost: "0",
-    data: '{"content_type":1,"data":"{\"topic\":\"动物园主题\",\"vocabulary_list\":[\"lion\",\"tiger\",\"elephant\",\"giraffe\",\"zebra\",\"monkey\",\"bear\",\"fox\",\"deer\",\"rabbit\"]}","original_result":null,"type_for_model":2}',
-    debug_url: "https://www.coze.cn/work_flow?execute_id=7433719181394100251&space_id=7432929629691789346&workflow_id=7433005944232214579",
-    msg: "Success",
-    token: 913
-  }
+  '7433005944232214579': {
+    "code": 0,
+    "cost": "0",
+    "data": "{\"content_type\":1,\"data\":\"{\\\"topic\\\":\\\"动物园主题\\\",\\\"vocabulary_list\\\":[\\\"zebra\\\",\\\"giraffe\\\",\\\"lion\\\",\\\"tiger\\\",\\\"elephant\\\",\\\"monkey\\\",\\\"bear\\\",\\\"fox\\\",\\\"deer\\\",\\\"rabbit\\\"]}\",\"original_result\":null,\"type_for_model\":2}",
+    "debug_url": "https://www.coze.cn/work_flow?execute_id=7433825898807607333\u0026space_id=7432929629691789346\u0026workflow_id=7433005944232214579",
+    "msg": "Success",
+    "token": 913
+}
 };
 
 Page({

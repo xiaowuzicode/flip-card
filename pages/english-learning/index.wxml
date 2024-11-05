@@ -3,18 +3,6 @@
   <view class="header">
     <image class="app-icon" src="/images/app-icon.png" />
     <text class="app-title">词卡翻翻乐（幼儿版）</text>
-<!-- 登录按钮 -->
-<button wx:if="{{!hasUserInfo}}"
-        class="login-btn"
-        open-type="chooseAvatar"
-        bindchooseavatar="onChooseAvatar">
-  选择头像
-</button>
-<input wx:if="{{!hasUserInfo}}"
-       type="nickname"
-       class="nickname-input"
-       placeholder="请输入昵称"
-       bindchange="onInputNickname"/>
   </view>
 
   <!-- 聊天内容区域 -->
