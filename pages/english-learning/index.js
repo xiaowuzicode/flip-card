@@ -25,7 +25,66 @@ Page({
       'bag',
       'money',
       'price'
-    ]
+    ],
+    userInfo: null,
+    hasUserInfo: false
+  },
+
+  onLoad: function() {
+    // 尝试从本地存储获取用户信息
+    const userInfo = wx.getStorageSync('userInfo');
+    if (userInfo) {
+      this.setData({
+        userInfo: userInfo,
+        hasUserInfo: true
+      });
+    }
+  },
+
+  // 处理头像选择
+  onChooseAvatar(e) {
+    console.log('选择头像', e.detail);
+    const { avatarUrl } = e.detail;
+    
+    this.setData({
+      'userInfo.avatarUrl': avatarUrl
+    });
+    
+    // 如果已经有昵称，则保存用户信息
+    if (this.data.userInfo && this.data.userInfo.nickName) {
+      this._saveUserInfo();
+    }
+  },
+
+  // 处理昵称输入
+  onInputNickname(e) {
+    console.log('输入昵称', e.detail);
+    const nickName = e.detail.value;
+    
+    this.setData({
+      'userInfo.nickName': nickName
+    });
+    
+    // 如果已经有头像，则保存用户信息
+    if (this.data.userInfo && this.data.userInfo.avatarUrl) {
+      this._saveUserInfo();
+    }
+  },
+
+  // 保存用户信息
+  _saveUserInfo() {
+    const userInfo = this.data.userInfo;
+    if (userInfo.avatarUrl && userInfo.nickName) {
+      wx.setStorageSync('userInfo', userInfo);
+      this.setData({
+        hasUserInfo: true
+      });
+      
+      wx.showToast({
+        title: '保存成功',
+        icon: 'success'
+      });
+    }
   },
 
   selectWord(e) {

@@ -360,3 +360,99 @@
   padding: 12rpx;
   width: 280rpx;
 }
+
+.login-btn {
+  margin: 20rpx auto;
+  padding: 10rpx 30rpx;
+  background-color: #007AFF;
+  color: white;
+  border-radius: 30rpx;
+  font-size: 28rpx;
+  width: fit-content;
+}
+
+.nickname-input {
+  margin: 20rpx auto;
+  padding: 10rpx 30rpx;
+  border: 1px solid #ccc;
+  border-radius: 30rpx;
+  width: 80%;
+  font-size: 28rpx;
+}
+
+.login-btn::after {
+  border: none;
+}
+
+/* 确保头像样式正确 */
+.avatar {
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.avatar image {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.login-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.login-container {
+  background: white;
+  border-radius: 20rpx;
+  padding: 40rpx;
+  width: 80%;
+  max-width: 600rpx;
+}
+
+.login-title {
+  text-align: center;
+  font-size: 32rpx;
+  margin-bottom: 30rpx;
+}
+
+.avatar-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 20rpx 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.avatar-preview {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  margin-bottom: 10rpx;
+}
+
+.avatar-text {
+  font-size: 26rpx;
+  color: #666;
+}
+
+.nickname-input {
+  border: 1px solid #eee;
+  border-radius: 10rpx;
+  padding: 15rpx;
+  margin-top: 20rpx;
+  width: 100%;
+  box-sizing: border-box;
+}

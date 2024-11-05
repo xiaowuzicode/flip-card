@@ -3,6 +3,18 @@
   <view class="header">
     <image class="app-icon" src="/images/app-icon.png" />
     <text class="app-title">词卡翻翻乐（幼儿版）</text>
+<!-- 登录按钮 -->
+<button wx:if="{{!hasUserInfo}}"
+        class="login-btn"
+        open-type="chooseAvatar"
+        bindchooseavatar="onChooseAvatar">
+  选择头像
+</button>
+<input wx:if="{{!hasUserInfo}}"
+       type="nickname"
+       class="nickname-input"
+       placeholder="请输入昵称"
+       bindchange="onInputNickname"/>
   </view>
 
   <!-- 聊天内容区域 -->
@@ -39,10 +51,10 @@
         <!-- 用户消息 -->
         <view class="chat-item user" wx:if="{{item.type === 'user'}}">
         <view class="avatar">
-            <image src="/images/user.png" mode="aspectFit"/>
+            <image src="{{userInfo.avatarUrl || '/images/default-avatar.png'}}" mode="aspectFit"/>
           </view>
           <view class="message-wrapper">
-            <view class="nickname">第瓢个季节</view>
+            <view class="nickname">{{userInfo.nickName || '访客'}}</view>
             <view class="message-content">{{item.content}}</view>
           </view>
           
@@ -98,6 +110,23 @@
       <view class="send-btn {{inputWord ? 'active' : ''}}" bindtap="handleSend">
         <image class="send-icon" src="/images/send-arrow.svg" />
       </view>
+    </view>
+  </view>
+
+  <!-- 登录弹窗 -->
+  <view class="login-modal" wx:if="{{!hasUserInfo}}">
+    <view class="login-container">
+      <view class="login-title">请完成登录</view>
+      <button class="avatar-btn"
+              open-type="chooseAvatar"
+              bindchooseavatar="onChooseAvatar">
+        <image class="avatar-preview" src="{{userInfo.avatarUrl || '/images/default-avatar.png'}}" />
+        <view class="avatar-text">点击选择头像</view>
+      </button>
+      <input type="nickname"
+             class="nickname-input"
+             placeholder="请输入昵称"
+             bindchange="onInputNickname"/>
     </view>
   </view>
 </view> 

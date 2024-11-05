@@ -1,7 +1,7 @@
 {
   "appid": "wx8ef07861edc9c0ad",
   "compileType": "miniprogram",
-  "libVersion": "2.29.2",
+  "libVersion": "3.0.0",
   "packOptions": {
     "ignore": [],
     "include": []
@@ -19,7 +19,11 @@
       "ignore": [],
       "disablePlugins": [],
       "outputPath": ""
-    }
+    },
+    "useCompilerPlugins": [
+      "sass"
+    ],
+    "urlCheck": false
   },
   "condition": {},
   "editorSetting": {
