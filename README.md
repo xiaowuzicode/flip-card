@@ -18,7 +18,7 @@
 
 ### 主界面
 
-![主界面截图](path/to/your/screenshot1.png)
+![主界面截图](images/1.png)
 
 ### 对话框界面
 

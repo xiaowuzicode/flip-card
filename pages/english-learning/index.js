@@ -100,7 +100,7 @@ Page({
 
   async callCozeAPI(word) {
     try {
-      const token = 'pat_BtQoypUHjLweAdwxTTLLp00OaXMuuk1SEuLxT0UWIArglEYsyN860W6SX01jAp9K';
+      const { token } = require('./config');
       
       const result = await new Promise((resolve, reject) => {
         wx.request({
