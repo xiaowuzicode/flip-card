@@ -29,7 +29,7 @@
 1. 克隆项目到本地：
 
    ```bash
-   git clone https://github.com/yourusername/yourproject.git
+   git clone [https://github.com/xiaowuzicode/flip-card.git]
    ```
 
 2. 在微信开发者工具中打开项目。
