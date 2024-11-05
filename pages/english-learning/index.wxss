@@ -475,3 +475,56 @@
 .word-image:active {
   opacity: 0.8;
 }
+
+.theme-words {
+  padding: 16px;
+  background: #fff;
+  border-radius: 12px;
+  margin: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.theme-words-title {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.theme-words-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.theme-word-item {
+  background: #f5f5f5;
+  padding: 12px;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 16px;
+  color: #333;
+  transition: all 0.3s;
+}
+
+.theme-word-item:active {
+  background: #e0e0e0;
+}
+
+/* 系统消息样式 */
+.chat-item.system {
+  display: flex;
+  justify-content: center;
+  margin: 8px 16px;
+}
+
+.system-message {
+  background-color: #ffffff;
+  padding: 8px 16px;
+  border-radius: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-size: 14px;
+  color: #666666;
+  max-width: 80%;
+  text-align: center;
+}

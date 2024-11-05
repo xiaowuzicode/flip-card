@@ -26,9 +26,9 @@
     
     <!-- 欢迎消息卡片 -->
     <view class="welcome-card">
-      <text class="welcome-text">亲爱的小朋友们，大家好呀！我是你的单词小助手 阿尔法。学习单词就像开启一场超级有趣的冒险之旅哦。</text>
+      <text class="welcome-text">亲爱的小朋友们，大家好呀！我是你的单词小助手 胖胖。学习单词就像开启一场超级有趣的冒险之旅哦。</text>
       <text class="welcome-text">今天，我要带着你们一起去探索奇妙的单词世界。</text>
-      <text class="welcome-hint">请输入你想学习的主题场景，比如：动物园，植物园或者海洋馆</text>
+      <text class="welcome-hint">请输入你想学习单词，比如：老虎，小狗，小猫咪，或者主题词库，动物园，植物园，海洋馆</text>
     </view>
       <!-- 主题选择按钮 -->
   <view class="theme-buttons">
@@ -40,6 +40,24 @@
       <text class="theme-icon">🌳</text>
       <text>植物园主题</text>
     </button>
+    <button class="theme-btn" bindtap="selectTheme" data-theme="plant">
+      <text class="theme-icon">🌊</text>
+      <text>海洋馆</text>
+    </button>
+  </view>
+  
+  <!-- 在主题按钮后面添加 -->
+  <view class="theme-words" wx:if="{{showThemeWords}}" id="theme-words">
+    <view class="theme-words-title">请选择想要学习的单词：</view>
+    <view class="theme-words-grid">
+      <view class="theme-word-item" 
+            wx:for="{{themeWords}}" 
+            wx:key="index"
+            bindtap="selectThemeWord"
+            data-word="{{item}}">
+        {{item}}
+      </view>
+    </view>
   </view>
 
     <!-- 聊天记录 -->
@@ -51,14 +69,20 @@
         <!-- 用户消息 -->
         <view class="chat-item user" wx:if="{{item.type === 'user'}}">
         <view class="avatar">
-            <image src="{{userInfo.avatarUrl || '/images/default-avatar.png'}}" mode="aspectFit"/>
+            <image src="{{userInfo.avatarUrl || '/images/user-avatar.svg'}}" mode="aspectFit"/>
           </view>
           <view class="message-wrapper">
             <view class="nickname">{{userInfo.nickName || '访客'}}</view>
             <view class="message-content">{{item.content}}</view>
           </view>
-          
         </view>
+
+          <!-- 系统消息 -->
+  <view class="chat-item system" wx:if="{{item.type === 'system'}}">
+    <view class="system-message">
+      <text>{{item.content}}</text>
+    </view>
+  </view>
         
         <!-- AI响应 -->
         <view class="chat-item ai" wx:if="{{item.type === 'ai'}}">
@@ -68,19 +92,37 @@
           <view class="message-wrapper">
             <view class="nickname">词卡翻翻乐（幼儿版）</view>
             <view class="card-container">
-              <image class="word-image" 
-                     src="{{item.imageUrl}}" 
-                     mode="aspectFit"
-                     bindtap="previewImage"
-                     data-url="{{item.imageUrl}}"
-              />
-              <view class="audio-controls">
-                <view class="play-button" bindtap="playAudio" data-url="{{item.audioUrl}}">
-                  <image class="play-icon" src="/images/play-icon.svg"/>
+              <view class="card-content">
+                <image class="word-image" 
+                       src="{{item.imageUrl}}" 
+                       mode="aspectFit"
+                       bindtap="previewImage"
+                       data-url="{{item.imageUrl}}"
+                />
+                <view class="audio-controls">
+                  <view class="play-button" bindtap="playAudio" data-url="{{item.audioUrl}}" data-index="{{index}}">
+                    <image class="play-icon" src="{{item.isPlaying ? '/images/pause-icon.svg' : '/images/play-icon.svg'}}" mode="aspectFit"/>
+                  </view>
+                  <view class="animated-progress">
+                    <svg width="40" height="40" viewBox="0 0 40 40">
+                      <circle cx="20" cy="20" r="18" 
+                             stroke="#e6e6e6" 
+                             stroke-width="2" 
+                             fill="none"/>
+                      <circle cx="20" cy="20" r="18"
+                             stroke="#007AFF"
+                             stroke-width="2"
+                             fill="none"
+                             stroke-dasharray="113"
+                             stroke-dashoffset="{{item.isPlaying ? 0 : 113}}"
+                             class="{{item.isPlaying ? 'progress-circle-animation' : ''}}"/>
+                    </svg>
+                  </view>
                 </view>
-                <view class="progress-bar">
-                  <view class="progress-inner"></view>
-                </view>
+              </view>
+              <view class="action-buttons" style="display: flex; justify-content: space-between; margin-top: 8px;">
+                <button class="action-btn skip" style="background-color: #007AFF; color: white; width: 45%; font-size: 12px; padding: 4px 0; margin: 0;" bindtap="skipWord">跳过</button>
+                <button class="action-btn learned" style="background-color: #007AFF; color: white; width: 45%; font-size: 12px; padding: 4px 0; margin: 0;" bindtap="markAsLearned">我会啦</button>
               </view>
             </view>
           </view>
@@ -93,8 +135,8 @@
 
   <!-- 底部操作区 -->
   <view class="bottom-area">
-    <!-- 历史记录按钮 -->
-    <view class="history-buttons">
+    <!-- 历史记录按钮 还未实现，先隐藏 -->
+    <view class="history-buttons" wx:if="{{false}}">
       <button class="history-btn" bindtap="checkTodayWords">
         <text class="history-icon">📅</text>
         <text>今日已学</text>
@@ -125,7 +167,7 @@
       <button class="avatar-btn"
               open-type="chooseAvatar"
               bindchooseavatar="onChooseAvatar">
-        <image class="avatar-preview" src="{{userInfo.avatarUrl || '/images/default-avatar.png'}}" />
+        <image class="avatar-preview" src="{{userInfo.avatarUrl || '/images/user-avatar.svg'}}" />
         <view class="avatar-text">点击选择头像</view>
       </button>
       <input type="nickname"
@@ -134,4 +176,5 @@
              bindchange="onInputNickname"/>
     </view>
   </view>
+
 </view> 
