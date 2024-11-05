@@ -28,7 +28,7 @@
     <view class="welcome-card">
       <text class="welcome-text">亲爱的小朋友们，大家好呀！我是你的单词小助手 胖胖。学习单词就像开启一场超级有趣的冒险之旅哦。</text>
       <text class="welcome-text">今天，我要带着你们一起去探索奇妙的单词世界。</text>
-      <text class="welcome-hint">请输入你想学习单词，比如：老虎，小狗，小猫咪，或者主题词库，动物园，植物园，海洋馆</text>
+      <text class="welcome-hint">请输入你想学习单词，比如：老虎，小狗，小猫咪，或者选择下方的主题词库</text>
     </view>
       <!-- 主题选择按钮 -->
   <view class="theme-buttons">

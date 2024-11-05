@@ -1,5 +1,5 @@
 {
-  "appid": "wx8ef07861edc9c0ad",
+  "appid": "wx5cc4fefb0f6d2376",
   "compileType": "miniprogram",
   "libVersion": "3.0.0",
   "packOptions": {
@@ -29,5 +29,6 @@
   "editorSetting": {
     "tabIndent": "insertSpaces",
     "tabSize": 2
-  }
+  },
+  "simulatorPluginLibVersion": {}
 }
