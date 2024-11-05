@@ -68,7 +68,12 @@
           <view class="message-wrapper">
             <view class="nickname">词卡翻翻乐（幼儿版）</view>
             <view class="card-container">
-              <image class="word-image" src="{{item.imageUrl}}" mode="aspectFit"/>
+              <image class="word-image" 
+                     src="{{item.imageUrl}}" 
+                     mode="aspectFit"
+                     bindtap="previewImage"
+                     data-url="{{item.imageUrl}}"
+              />
               <view class="audio-controls">
                 <view class="play-button" bindtap="playAudio" data-url="{{item.audioUrl}}">
                   <image class="play-icon" src="/images/play-icon.svg"/>

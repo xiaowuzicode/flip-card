@@ -456,3 +456,22 @@
   width: 100%;
   box-sizing: border-box;
 }
+
+.card-container {
+  background: white;
+  border-radius: 16rpx;
+  padding: 12rpx;
+  width: 280rpx;
+}
+
+.word-image {
+  width: 100%;
+  height: 280rpx; /* 增加图片显示高度 */
+  object-fit: contain; /* 保持图片比例 */
+  border-radius: 8rpx; /* 添加圆角 */
+}
+
+/* 添加图片点击效果 */
+.word-image:active {
+  opacity: 0.8;
+}
