@@ -199,7 +199,7 @@ Page({
       // 创建等待提示的定时器
       let currentChatList = [...this.data.chatList];
       const waitingMessages = [
-        { delay: 3000, message: '正在学习读音...' },
+        { delay: 5000, message: '正在学习读音...' },
         { delay: 10000, message: '正在生成卡片...' }
       ];
       
@@ -232,7 +232,7 @@ Page({
             },
             is_async: false
           },
-          timeout: 30000,
+          timeout: 40000,
           success: (res) => {
             // 清除所有定时器
             timers.forEach(timer => clearTimeout(timer));
