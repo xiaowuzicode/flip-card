@@ -28,6 +28,10 @@
 
 ![卡片样式截图](images/1.png)
 
+### 获取微信用户头像和昵称
+
+![卡片样式截图](images/4.png)
+
 ## 安装与使用
 
 1. 克隆项目到本地：
@@ -39,11 +43,20 @@
 2. 在微信开发者工具中打开项目。
 
 3. 配置 API 接口信息。
-在config.js中配置token
+新建english-learning/config.js中配置token（coze平台获取）
+module.exports = {
+  token: 'your token'
+};
 
 4. 运行项目并体验功能。
-修改发送按钮方法为sendWord,目前是模拟（测试）发送按钮handleSend
-<view class="send-btn {{inputWord ? 'active' : ''}}" bindtap="handleSend">
+由于api收费，目前是模拟数据，在english-learning/index.js中配置开关和模拟数据，true的时候使用真实api
+// 配置开关和模拟数据
+const CONFIG = {
+  USE_REAL_API: false, // 控制是否使用真实API的开关
+  MOCK_DELAY: 500,
+  // 使用条件编译
+  API_TOKEN: token
+};
 
 ## 贡献
 
